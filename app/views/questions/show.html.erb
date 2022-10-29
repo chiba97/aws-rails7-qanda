@@ -1,45 +1,45 @@
-<h1>Show</h1>
+<h1>質問詳細</h1>
 <p>
-  Title:<br>
+  タイトル:<br>
   <%= @question.title %>
 </p>
 <p>
-  Name:<br>
-  <%= @question.name %>
-</p>
-<p>
-  Content:<br>
+  内容:<br>
   <%= @question.content %>
 </p>
+<p>
+  名前:<br>
+  <%= @question.name %>
+</p>
 
-<h2>Answers</h2>
+<h2>解答一覧</h2>
 <% @question.answers.each do |answer| %>
   <p>
-    Name:<br>
-    <%= answer.name %>
-  </p>
-  <p>
-    Content:<br>
+    内容:<br>
     <%= answer.content %>
   </p>
   <p>
-    <%= link_to 'Destroy Answer', [answer.question, answer],
-      data: { turbo_method: 'delete', turbo_confirm: 'Are you sure?' }%>
+    名前:<br>
+    <%= answer.name %>
+  </p>
+  <p>
+    <%= link_to '削除', [answer.question, answer],
+      data: { turbo_method: 'delete', turbo_confirm: '本当に削除しますか？' }%>
   </p>
 <% end %>
 
-<h2>Add a answer</h2>
+<h2>新規解答</h2>
 <%= form_with model: [@question, @question.answers.build] do |form| %>
   <div>
-    <%= form.label :name %><br>
-    <%= form.text_field :name %>
+    <%= form.label :内容 %><br>
+    <%= form.text_area :content %>
   </div>
   <div>
-    <%= form.label :content %><br>
-    <%= form.text_area :content %>
+    <%= form.label :名前%><br>
+    <%= form.text_field :name %>
   </div>
   <div>
     <%= form.submit %>
   </div>
 <% end %>
-<%= link_to 'top', questions_path %>
+<%= link_to '質問一覧へ', questions_path %>
